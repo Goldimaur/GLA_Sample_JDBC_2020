@@ -33,7 +33,18 @@ public class Main {
                 JOptionPane.PLAIN_MESSAGE
         ));
         switch (choice) {
-            case CREATE_NEW_CITY -> createNewCity();
+            case CREATE_NEW_CITY -> {
+                helper.createANewCityInTheDatabase(
+                        DatabaseConnection.getConnection(),
+                        createNewCity()
+                );
+                JOptionPane.showMessageDialog(
+                        null,
+                        "City Added To The Database",
+                        "SUCCESSFULL",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            }
             case PRINT_ALL_CITIES -> printAllCities();
             case MODIFY_CITY -> modifyCity();
             case DELETE_CITY -> deleteCity();
@@ -53,7 +64,7 @@ public class Main {
 
     }
 
-    private static void createNewCity() {
+    private static City createNewCity() {
         /*
          * To add an entry for a new city into the cities table in the database,
          * we need to do the following:
@@ -65,7 +76,7 @@ public class Main {
         String cityName = inputNewCityName();
         boolean isCityTraversed = inputCityTraversed(cityName);
         int kmsRequired = inputCityKilometers();
-        City city = new City(cityName, isCityTraversed, kmsRequired);
+        return new City(cityName, isCityTraversed, kmsRequired);
     }
 
     private static int inputCityKilometers() {
