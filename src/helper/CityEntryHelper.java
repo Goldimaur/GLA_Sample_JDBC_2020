@@ -42,7 +42,7 @@ public class CityEntryHelper {
      * Using the `?`, we can define the actual value later on when we are ready to execute the query.
      * */
     private static final String CREATE_CITY_QUERY =
-            "INSERT INTO cities (name, traversed, kilometers_required) VALUES (?, ?, ?);";
+            "INSERT INTO " + TABLE_NAME + " (name, traversed, kilometers_required) VALUES (?, ?, ?);";
 
     /**
      * This method will create an entry for a new city in the cities table of the database;
