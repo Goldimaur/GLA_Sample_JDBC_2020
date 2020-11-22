@@ -47,4 +47,8 @@ public class DatabaseConnection {
      * the reference of a connection to the actual database.
      */
     private static final Connection connection = null;
+
+    public static Connection getConnection() {
+        return connection;
+    }
 }
