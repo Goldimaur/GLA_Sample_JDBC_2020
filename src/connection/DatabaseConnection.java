@@ -26,4 +26,9 @@ public class DatabaseConnection {
      */
     private static final String URL = "";
 
+    /**
+     * This is the username of the admin of the database.
+     * Usually, on server emulators like XAMPP, it is defaulted to 'root'.
+     */
+    private static final String USERNAME = "root";
 }
