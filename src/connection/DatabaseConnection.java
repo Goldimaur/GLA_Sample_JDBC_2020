@@ -77,7 +77,13 @@ public class DatabaseConnection {
                     "ERROR 1",
                     JOptionPane.ERROR_MESSAGE
             );
+        } finally {
+            printConnectionStatus();
         }
         return wasConnectionSuccessful;
+    }
+
+    private void printConnectionStatus() {
+        System.out.println(getConnection() != null ? "Connection is active!" : "Connection is inactive!");
     }
 }
