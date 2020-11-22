@@ -51,7 +51,7 @@ public class CityEntryHelper {
             "SELECT * FROM " + TABLE_NAME + ";";
 
     private static final String UPDATE_CITY_QUERY =
-            "UPDATE " + TABLE_NAME + " SET " + KMS_REQUIRED_COLUMN + " = ? WHERE " + NAME_COLUMN + " ?;";
+            "UPDATE " + TABLE_NAME + " SET " + KMS_REQUIRED_COLUMN + " = ? WHERE " + NAME_COLUMN + " = ?;";
 
     private static final String DELETE_CITY_QUERY =
             "DELETE FROM " + TABLE_NAME + " WHERE " + NAME_COLUMN + " = ?;";
@@ -124,7 +124,20 @@ public class CityEntryHelper {
 
     // TODO create a method to update an entry in the cities table by executing the update query.
     public void modifyCityInDatabase(Connection connection, String inputCityName, int inputCityKilometers) {
-
+        try {
+            PreparedStatement modifyCityStatement =
+                    connection.prepareStatement(UPDATE_CITY_QUERY);
+            modifyCityStatement.setInt(1, inputCityKilometers);
+            modifyCityStatement.setString(2, inputCityName);
+            modifyCityStatement.executeUpdate();
+        } catch (SQLException exception) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Sorry, " + inputCityName + " could not be updated.",
+                    "ERROR 4",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
     }
 
 

@@ -46,7 +46,9 @@ public class Main {
                 );
             }
             case PRINT_ALL_CITIES -> printAllCities();
-            case MODIFY_CITY -> modifyCity();
+            case MODIFY_CITY -> {
+                modifyCity();
+            }
             case DELETE_CITY -> deleteCity();
             case EXIT -> System.exit(0);
         }
