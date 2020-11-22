@@ -61,7 +61,7 @@ public class Main {
     }
 
     private static void printAllCities() {
-
+        helper.printAllCitiesInDatabase(DatabaseConnection.getConnection());
     }
 
     private static City createNewCity() {

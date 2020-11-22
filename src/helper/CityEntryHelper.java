@@ -3,8 +3,10 @@ package helper;
 import data.City;
 
 import javax.swing.*;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -43,6 +45,8 @@ public class CityEntryHelper {
      * */
     private static final String CREATE_CITY_QUERY =
             "INSERT INTO " + TABLE_NAME + " (name, traversed, kilometers_required) VALUES (?, ?, ?);";
+    private static final String READ_ALL_CITIES_QUERY =
+            "SELECT * FROM " + TABLE_NAME + ";";
 
     /**
      * This method will create an entry for a new city in the cities table of the database;
@@ -71,4 +75,42 @@ public class CityEntryHelper {
         return isSuccess;
     }
 
+    /**
+     * This method will read all the entries from the cities table and print it
+     * for the user.
+     *
+     * @param connection The reference of the current connection to the database.
+     */
+    public void printAllCitiesInDatabase(Connection connection) {
+        try {
+            PreparedStatement readAllCitiesStatement =
+                    connection.prepareStatement(READ_ALL_CITIES_QUERY);
+            ResultSet resultSet = readAllCitiesStatement.executeQuery();
+            StringBuilder builder = new StringBuilder();
+            while (resultSet.next()) {
+                String cityName = resultSet.getString(NAME_COLUMN);
+                boolean isTraversed = resultSet.getBoolean(TRAVERSED_COLUMN);
+                int kmsRequired = resultSet.getInt(KMS_REQUIRED_COLUMN);
+                City city = new City(cityName, isTraversed, kmsRequired);
+                builder.append(city.toString()).append("\n--------------------------------\n");
+            }
+            JTextArea textArea = new JTextArea(builder.toString());
+            JScrollPane scrollPane = new JScrollPane(textArea);
+            textArea.setLineWrap(true);
+            scrollPane.setPreferredSize(new Dimension(1024, 768));
+            JOptionPane.showMessageDialog(
+                    null,
+                    scrollPane,
+                    "Cities In The Database",
+                    JOptionPane.PLAIN_MESSAGE
+            );
+        } catch (SQLException exception) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Sorry, could not read the values from the database.",
+                    "ERROR 3",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
 }
