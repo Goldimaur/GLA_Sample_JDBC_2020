@@ -18,6 +18,19 @@ import java.sql.Connection;
  */
 public class CityEntryHelper {
 
+    /*
+     * This is the name of the table in our database.
+     * It has three attributes:
+     * 1. name: to store the name of the city.
+     * 2. traversed: to store whether the city is visited.
+     * 3. kilometers_required: to store how many kilometers the user need to visit this city.
+     * */
+    private static final String TABLE_NAME = "cities";
+
+    private static final String NAME_COLUMN = "name";
+    private static final String TRAVERSED_COLUMN = "traversed";
+    private static final String KMS_REQUIRED_COLUMN = "kilometers_required";
+
     /**
      * This method will create an entry for a new city in the cities table of the database;
      *
