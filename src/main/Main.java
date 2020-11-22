@@ -101,7 +101,7 @@ public class Main {
     private static boolean inputCityTraversed(String cityName) {
         return Boolean.parseBoolean(JOptionPane.showInputDialog(
                 null,
-                "Have you ever been to " + cityName + " ?",
+                "Have you ever been to " + cityName + " ? (true/false)",
                 "Enter Visited Status",
                 JOptionPane.PLAIN_MESSAGE
         ));
