@@ -122,7 +122,6 @@ public class CityEntryHelper {
         }
     }
 
-    // TODO create a method to update an entry in the cities table by executing the update query.
     public void modifyCityInDatabase(Connection connection, String inputCityName, int inputCityKilometers) {
         try {
             PreparedStatement modifyCityStatement =
@@ -140,6 +139,19 @@ public class CityEntryHelper {
         }
     }
 
-
-    // TODO create a method to delete an entry from the cities table by executing the delete query.
+    public void deleteCityFromDatabase(Connection connection, String cityName) {
+        try {
+            PreparedStatement deleteCityStatement =
+                    connection.prepareStatement(DELETE_CITY_QUERY);
+            deleteCityStatement.setString(1, cityName);
+            deleteCityStatement.executeUpdate();
+        } catch (SQLException exception) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    cityName + " could not be deleted from the database",
+                    "ERROR 5",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
+    }
 }
