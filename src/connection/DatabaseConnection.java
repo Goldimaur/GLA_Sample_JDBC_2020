@@ -1,6 +1,9 @@
 package connection;
 
+import javax.swing.*;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * This class will create a new connection to the database.
@@ -46,7 +49,7 @@ public class DatabaseConnection {
      * This connection variable is required to maintain
      * the reference of a connection to the actual database.
      */
-    private static final Connection connection = null;
+    private static Connection connection = null;
 
     public static Connection getConnection() {
         return connection;
@@ -60,7 +63,21 @@ public class DatabaseConnection {
      */
     public boolean connectToDatabase() {
         boolean wasConnectionSuccessful = false;
-
+        try {
+            connection = DriverManager.getConnection(
+                    URL,
+                    USERNAME,
+                    password);
+            wasConnectionSuccessful = true;
+        } catch (SQLException exception) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "There was an error connecting to the database." +
+                            "\nPlease check your username, password and URL.",
+                    "ERROR 1",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
         return wasConnectionSuccessful;
     }
 }
