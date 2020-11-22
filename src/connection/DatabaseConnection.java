@@ -1,5 +1,7 @@
 package connection;
 
+import java.sql.Connection;
+
 /**
  * This class will create a new connection to the database.
  * <br>
@@ -39,4 +41,10 @@ public class DatabaseConnection {
      * configuration or the documentation provided by the software vendor for the password.
      */
     private static final String password = "";
+
+    /**
+     * This connection variable is required to maintain
+     * the reference of a connection to the actual database.
+     */
+    private static final Connection connection = null;
 }
