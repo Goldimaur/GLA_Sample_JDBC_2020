@@ -43,7 +43,7 @@ public class DatabaseConnection {
      * IF you are using another emulator like WAMP or MAMP, then you need to consult your
      * configuration or the documentation provided by the software vendor for the password.
      */
-    private static final String password = "";
+    private static final String PASSWORD = "";
 
     /**
      * This connection variable is required to maintain
@@ -75,7 +75,7 @@ public class DatabaseConnection {
             connection = DriverManager.getConnection(
                     URL,
                     USERNAME,
-                    password);
+                    PASSWORD);
             wasConnectionSuccessful = true;
         } catch (SQLException exception) {
             JOptionPane.showMessageDialog(
@@ -85,6 +85,7 @@ public class DatabaseConnection {
                     "ERROR 1",
                     JOptionPane.ERROR_MESSAGE
             );
+            exception.printStackTrace();
         } finally {
             printConnectionStatus();
         }
