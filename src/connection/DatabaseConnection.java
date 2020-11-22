@@ -2,6 +2,7 @@ package connection;
 
 import javax.swing.*;
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -96,6 +97,42 @@ public class DatabaseConnection {
      * This method will print the current status of the connection to the database.
      */
     private void printConnectionStatus() {
-        System.out.println(getConnection() != null ? "Connection is active!" : "Connection is inactive!");
+        if (getConnection() != null) {
+            printConnectionActive();
+        } else {
+            printConnectionInactive();
+        }
+    }
+
+    private void printConnectionInactive() {
+        try {
+            String userName = getConnection().getMetaData().getUserName();
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Hi, " + userName + " sorry, we could not connect to the database!" +
+                            "Please check your username, password and url.",
+                    "Failed To Connected To The Database",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        } catch (SQLException ignored) {
+
+        }
+
+    }
+
+    private void printConnectionActive() {
+        try {
+            DatabaseMetaData metaData = getConnection().getMetaData();
+            String databaseProductName = metaData.getDatabaseProductName();
+            String userName = metaData.getUserName().split("@")[0];
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Hi, " + userName + " the connection to the " + databaseProductName + " database is now active.",
+                    "Successfully Connected To The Database",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        } catch (SQLException ignored) {
+
+        }
     }
 }
