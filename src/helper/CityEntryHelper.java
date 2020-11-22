@@ -1,5 +1,9 @@
 package helper;
 
+import data.City;
+
+import java.sql.Connection;
+
 /**
  * This class will help us utilize the City.java data class.
  * <br>
@@ -13,4 +17,16 @@ package helper;
  * 4. Delete the entry of a particular city from the cities table of the database.
  */
 public class CityEntryHelper {
+
+    /**
+     * This method will create an entry for a new city in the cities table of the database;
+     *
+     * @param connection The reference of the current connection to the database.
+     * @param city       The values of the city we want to add, wrapped in a City object.
+     */
+    public boolean createANewCityInTheDatabase(Connection connection, City city) {
+        boolean isSuccess = false;
+        return isSuccess;
+    }
+
 }
