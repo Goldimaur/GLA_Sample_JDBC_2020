@@ -46,16 +46,18 @@ public class Main {
                 );
             }
             case PRINT_ALL_CITIES -> printAllCities();
-            case MODIFY_CITY -> {
-                modifyCity();
-            }
+            case MODIFY_CITY -> modifyCity();
             case DELETE_CITY -> deleteCity();
             case EXIT -> System.exit(0);
         }
     }
 
     private static void deleteCity() {
-
+        String cityName = inputCityName();
+        helper.deleteCityFromDatabase(
+                DatabaseConnection.getConnection(),
+                cityName
+        );
     }
 
     private static void modifyCity() {
@@ -106,7 +108,7 @@ public class Main {
     private static String inputCityName() {
         return JOptionPane.showInputDialog(
                 null,
-                "Please enter the name of the new city.",
+                "Please enter the name of the city.",
                 "Enter City Name",
                 JOptionPane.PLAIN_MESSAGE
         );
