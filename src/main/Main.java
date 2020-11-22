@@ -2,6 +2,7 @@ package main;
 
 import connection.DatabaseConnection;
 import data.City;
+import helper.CityEntryHelper;
 
 import javax.swing.*;
 
@@ -13,10 +14,13 @@ public class Main {
     public static final int DELETE_CITY = 4;
     public static final int EXIT = 5;
 
+    private static CityEntryHelper helper = null;
+
     public static void main(String[] args) {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         // attempting to connect to a database
         databaseConnection.connectToDatabase();
+        helper = new CityEntryHelper();
         int choice = Integer.parseInt(JOptionPane.showInputDialog(
                 null,
                 """
