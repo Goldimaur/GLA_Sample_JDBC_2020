@@ -51,4 +51,16 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         return connection;
     }
+
+    /**
+     * This method will create the actual connection to our database.
+     * We just need to initialize the connection variable inside of it.
+     *
+     * @return whether the connection was successfully created.
+     */
+    public boolean connectToDatabase() {
+        boolean wasConnectionSuccessful = false;
+
+        return wasConnectionSuccessful;
+    }
 }
