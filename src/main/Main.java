@@ -20,5 +20,26 @@ public class Main {
                 "GLA JDBC GAME MENU",
                 JOptionPane.PLAIN_MESSAGE
         ));
+        switch (choice) {
+            case 1 -> createNewCity();
+            case 2 -> printAllCities();
+            case 3 -> modifyCity();
+            case 4 -> deleteCity();
+        }
+    }
+
+    private static void deleteCity() {
+
+    }
+
+    private static void modifyCity() {
+
+    }
+
+    private static void printAllCities() {
+
+    }
+
+    private static void createNewCity() {
     }
 }
