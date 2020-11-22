@@ -50,6 +50,12 @@ public class CityEntryHelper {
     private static final String READ_ALL_CITIES_QUERY =
             "SELECT * FROM " + TABLE_NAME + ";";
 
+    private static final String UPDATE_CITY_QUERY =
+            "UPDATE " + TABLE_NAME + " SET " + KMS_REQUIRED_COLUMN + " = ? WHERE " + NAME_COLUMN + " ?;";
+
+    private static final String DELETE_CITY_QUERY =
+            "DELETE FROM " + TABLE_NAME + " WHERE " + NAME_COLUMN + " = ?;";
+
     /**
      * This method will create an entry for a new city in the cities table of the database;
      *
@@ -115,4 +121,12 @@ public class CityEntryHelper {
             );
         }
     }
+
+    // TODO create a method to update an entry in the cities table by executing the update query.
+    public void modifyCityInDatabase(Connection connection, String inputCityName, int inputCityKilometers) {
+
+    }
+
+
+    // TODO create a method to delete an entry from the cities table by executing the delete query.
 }

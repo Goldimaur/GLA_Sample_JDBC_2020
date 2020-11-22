@@ -57,7 +57,11 @@ public class Main {
     }
 
     private static void modifyCity() {
-
+        helper.modifyCityInDatabase(
+                DatabaseConnection.getConnection(),
+                inputCityName(),
+                inputCityKilometers()
+        );
     }
 
     private static void printAllCities() {
@@ -73,7 +77,7 @@ public class Main {
          * 3. Send the city object to the `createANewCityInTheDatabase()` method
          * of the `CityEntryHelper.java` class.
          * */
-        String cityName = inputNewCityName();
+        String cityName = inputCityName();
         boolean isCityTraversed = inputCityTraversed(cityName);
         int kmsRequired = inputCityKilometers();
         return new City(cityName, isCityTraversed, kmsRequired);
@@ -97,7 +101,7 @@ public class Main {
         ));
     }
 
-    private static String inputNewCityName() {
+    private static String inputCityName() {
         return JOptionPane.showInputDialog(
                 null,
                 "Please enter the name of the new city.",
