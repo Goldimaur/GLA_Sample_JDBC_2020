@@ -31,4 +31,12 @@ public class DatabaseConnection {
      * Usually, on server emulators like XAMPP, it is defaulted to 'root'.
      */
     private static final String USERNAME = "root";
+
+    /**
+     * This is the password of the admin of the database.
+     * If you are using XAMPP like me, then the default password is just going to be blank.
+     * IF you are using another emulator like WAMP or MAMP, then you need to consult your
+     * configuration or the documentation provided by the software vendor for the password.
+     */
+    private static final String password = "";
 }
