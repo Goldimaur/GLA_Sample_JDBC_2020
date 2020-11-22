@@ -57,6 +57,8 @@ public class CityEntryHelper {
             createCityStatement.setString(1, city.getCityName());
             createCityStatement.setBoolean(2, city.isCityTraversed());
             createCityStatement.setInt(3, city.getKilometersRequired());
+            createCityStatement.executeUpdate();
+            isSuccess = true;
         } catch (SQLException exception) {
             JOptionPane.showMessageDialog(
                     null,
