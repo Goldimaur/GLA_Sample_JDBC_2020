@@ -1,5 +1,7 @@
 package data;
 
+import java.util.Objects;
+
 public class City {
     private String cityName;
     private boolean isCityTraversed;
@@ -33,5 +35,20 @@ public class City {
 
     public void setKilometersRequired(int kilometersRequired) {
         this.kilometersRequired = kilometersRequired;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        City city = (City) o;
+        return isCityTraversed == city.isCityTraversed &&
+                kilometersRequired == city.kilometersRequired &&
+                Objects.equals(cityName, city.cityName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cityName, isCityTraversed, kilometersRequired);
     }
 }
