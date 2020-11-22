@@ -1,5 +1,6 @@
 package data;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class City {
@@ -50,5 +51,16 @@ public class City {
     @Override
     public int hashCode() {
         return Objects.hash(cityName, isCityTraversed, kilometersRequired);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                Locale.ENGLISH,
+                "%-30s | %-30s | %-30s",
+                "City Name: " + this.getCityName(),
+                "Visited: " + (this.isCityTraversed() ? "Yes" : "No"),
+                "Kilometers Required: " + this.getKilometersRequired() + " kms"
+        );
     }
 }
