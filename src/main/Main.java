@@ -21,34 +21,36 @@ public class Main {
         // attempting to connect to a database
         databaseConnection.connectToDatabase();
         helper = new CityEntryHelper();
-        int choice = Integer.parseInt(JOptionPane.showInputDialog(
-                null,
-                """
-                        Enter 1 to add a new city into the database.
-                        Enter 2 to view all the cities currently in the database.
-                        Enter 3 to modify a particular city in the database.
-                        Enter 4 to delete a particular city from the database.
-                        Enter 5 to exit.""",
-                "GLA JDBC GAME MENU",
-                JOptionPane.PLAIN_MESSAGE
-        ));
-        switch (choice) {
-            case CREATE_NEW_CITY -> {
-                helper.createANewCityInTheDatabase(
-                        DatabaseConnection.getConnection(),
-                        createNewCity()
-                );
-                JOptionPane.showMessageDialog(
-                        null,
-                        "City Added To The Database",
-                        "SUCCESSFULL",
-                        JOptionPane.INFORMATION_MESSAGE
-                );
+        while (true) {
+            int choice = Integer.parseInt(JOptionPane.showInputDialog(
+                    null,
+                    """
+                            Enter 1 to add a new city into the database.
+                            Enter 2 to view all the cities currently in the database.
+                            Enter 3 to modify a particular city in the database.
+                            Enter 4 to delete a particular city from the database.
+                            Enter 5 to exit.""",
+                    "GLA JDBC GAME MENU",
+                    JOptionPane.PLAIN_MESSAGE
+            ));
+            switch (choice) {
+                case CREATE_NEW_CITY -> {
+                    helper.createANewCityInTheDatabase(
+                            DatabaseConnection.getConnection(),
+                            createNewCity()
+                    );
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "City Added To The Database",
+                            "SUCCESSFULL",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }
+                case PRINT_ALL_CITIES -> printAllCities();
+                case MODIFY_CITY -> modifyCity();
+                case DELETE_CITY -> deleteCity();
+                case EXIT -> System.exit(0);
             }
-            case PRINT_ALL_CITIES -> printAllCities();
-            case MODIFY_CITY -> modifyCity();
-            case DELETE_CITY -> deleteCity();
-            case EXIT -> System.exit(0);
         }
     }
 
