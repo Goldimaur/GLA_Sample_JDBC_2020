@@ -31,6 +31,16 @@ public class CityEntryHelper {
     private static final String TRAVERSED_COLUMN = "traversed";
     private static final String KMS_REQUIRED_COLUMN = "kilometers_required";
 
+    /*
+     * This is the actual SQL query that will send the data from our Java program to the
+     * SQL database.
+     * The `?` here is called a parameter.
+     * This is just a placeholder for the actual value in the SQL query.
+     * Using the `?`, we can define the actual value later on when we are ready to execute the query.
+     * */
+    private static final String CREATE_CITY_QUERY =
+            "INSERT INTO cities (name, traversed, kilometers_required) VALUES (?, ?, ?);";
+
     /**
      * This method will create an entry for a new city in the cities table of the database;
      *
