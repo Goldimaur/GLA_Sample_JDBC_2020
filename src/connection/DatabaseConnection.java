@@ -24,7 +24,7 @@ public class DatabaseConnection {
      * You can still use the same code to connect to it, by just changing the URL and other
      * parameters for the database accordingly.
      */
-    private static final String URL = "";
+    private static final String URL = "jdbc:mysql://localhost:3306/google_play_game";
 
     /**
      * This is the username of the admin of the database.
