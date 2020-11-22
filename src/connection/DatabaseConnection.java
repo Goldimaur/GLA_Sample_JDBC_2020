@@ -127,7 +127,7 @@ public class DatabaseConnection {
             String userName = metaData.getUserName().split("@")[0];
             JOptionPane.showMessageDialog(
                     null,
-                    "Hi, " + userName + " the connection to the " + databaseProductName + " database is now active.",
+                    "Hi " + userName + ", the connection to the " + databaseProductName + " database is now active.",
                     "Successfully Connected To The Database",
                     JOptionPane.INFORMATION_MESSAGE
             );
