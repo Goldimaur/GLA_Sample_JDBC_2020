@@ -64,6 +64,14 @@ public class DatabaseConnection {
     public boolean connectToDatabase() {
         boolean wasConnectionSuccessful = false;
         try {
+            /* We are using the static getConnection method of the
+             * DriverManager class to initialize the connection variable
+             * because the connection variable of the `java.sql.Connection` interface,
+             * and we cannot initialize the reference variables of any interface
+             * by using the Constructor.
+             * If you check the return type of the getConnection method here,
+             * you will find that it `Connection` only.
+             * */
             connection = DriverManager.getConnection(
                     URL,
                     USERNAME,
@@ -83,6 +91,9 @@ public class DatabaseConnection {
         return wasConnectionSuccessful;
     }
 
+    /**
+     * This method will print the current status of the connection to the database.
+     */
     private void printConnectionStatus() {
         System.out.println(getConnection() != null ? "Connection is active!" : "Connection is inactive!");
     }
