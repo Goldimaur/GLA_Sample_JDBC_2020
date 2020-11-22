@@ -45,6 +45,8 @@ public class CityEntryHelper {
      * */
     private static final String CREATE_CITY_QUERY =
             "INSERT INTO " + TABLE_NAME + " (name, traversed, kilometers_required) VALUES (?, ?, ?);";
+
+    // This SQL query will fetch all the records (entries) from the cities table.
     private static final String READ_ALL_CITIES_QUERY =
             "SELECT * FROM " + TABLE_NAME + ";";
 
@@ -92,12 +94,12 @@ public class CityEntryHelper {
                 boolean isTraversed = resultSet.getBoolean(TRAVERSED_COLUMN);
                 int kmsRequired = resultSet.getInt(KMS_REQUIRED_COLUMN);
                 City city = new City(cityName, isTraversed, kmsRequired);
-                builder.append(city.toString()).append("\n--------------------------------\n");
+                builder.append(city.toString()).append("\n").append("-".repeat(150)).append("\n");
             }
             JTextArea textArea = new JTextArea(builder.toString());
             JScrollPane scrollPane = new JScrollPane(textArea);
             textArea.setLineWrap(true);
-            scrollPane.setPreferredSize(new Dimension(1024, 768));
+            scrollPane.setPreferredSize(new Dimension(1024, 400));
             JOptionPane.showMessageDialog(
                     null,
                     scrollPane,
