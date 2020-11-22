@@ -2,7 +2,10 @@ package helper;
 
 import data.City;
 
+import javax.swing.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 /**
  * This class will help us utilize the City.java data class.
@@ -49,6 +52,17 @@ public class CityEntryHelper {
      */
     public boolean createANewCityInTheDatabase(Connection connection, City city) {
         boolean isSuccess = false;
+        try {
+            PreparedStatement createCityStatement = connection.prepareStatement(CREATE_CITY_QUERY);
+        } catch (SQLException exception) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Sorry, we could not add the city \"" + city.getCityName() + "\" to the database." +
+                            "\n" + exception.getMessage(),
+                    "ERROR 2",
+                    JOptionPane.ERROR_MESSAGE
+            );
+        }
         return isSuccess;
     }
 
