@@ -1,6 +1,7 @@
 package main;
 
 import connection.DatabaseConnection;
+import data.City;
 
 import javax.swing.*;
 
@@ -49,5 +50,44 @@ public class Main {
     }
 
     private static void createNewCity() {
+        /*
+         * To add an entry for a new city into the cities table in the database,
+         * we need to do the following:
+         * 1. Ask the user to input all the values of the attributes of a City-type.
+         * 2. Collect all the values together into a city object.
+         * 3. Send the city object to the `createANewCityInTheDatabase()` method
+         * of the `CityEntryHelper.java` class.
+         * */
+        String cityName = inputNewCityName();
+        boolean isCityTraversed = inputCityTraversed(cityName);
+        int kmsRequired = inputCityKilometers();
+        City city = new City(cityName, isCityTraversed, kmsRequired);
+    }
+
+    private static int inputCityKilometers() {
+        return Integer.parseInt(JOptionPane.showInputDialog(
+                null,
+                "Please enter the kilometers required value.",
+                "Enter Kilometers Required",
+                JOptionPane.PLAIN_MESSAGE
+        ));
+    }
+
+    private static boolean inputCityTraversed(String cityName) {
+        return Boolean.parseBoolean(JOptionPane.showInputDialog(
+                null,
+                "Have you ever been to " + cityName + " ?",
+                "Enter Visited Status",
+                JOptionPane.PLAIN_MESSAGE
+        ));
+    }
+
+    private static String inputNewCityName() {
+        return JOptionPane.showInputDialog(
+                null,
+                "Please enter the name of the new city.",
+                "Enter City Name",
+                JOptionPane.PLAIN_MESSAGE
+        );
     }
 }
